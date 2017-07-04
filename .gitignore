@@ -89,3 +89,12 @@ ENV/
 
 # Rope project settings
 .ropeproject
+.idea/Hut8Hue.iml
+.idea/deployment.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/remote-mappings.xml
+.idea/vcs.xml
+.idea/webServers.xml
+.idea/workspace.xml
