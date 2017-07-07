@@ -8,92 +8,132 @@ from phue import Bridge
 import touchphat
 import os.path
 import time
-from rgbxy import Converter
 
+#==============================================================================================
 # Setup
 touchphat.all_off()
 
-bridgeip = '192.168.13.180'
-lights = ['Test lamp']
+# The IP address of the Hue bridge and a list of lights you want to use
+bridgeip = '192.168.13.178'
+lights = ['Desk', 'Ikea']
 
 b = Bridge(bridgeip)
 
 # If running for the first time, press button on bridge and run with b.connect() uncommented
-if (os.path.exists("/home/pi/.python_hue") == False):
-    print('Press the Hue`s connect button')
-    b.connect()
+#b.connect()
+
+lighttype = []
+lighttypecolour = 'Extended color light'
+lighttypedimmable = 'Dimmable light'
+# Get the type of lights that are connected
+for light in lights:
+    lighttype.append([light, b.get_light(light, 'type')])
 
 # Alert Patterns - used to change the status of lights
-# First do some RGB to XY conversion
-converter = Converter()
-redxy = converter.rgb_to_xy(255, 0, 0)
-greenxy = converter.rgb_to_xy(0, 255, 0)
-bluexy = converter.rgb_to_xy(0, 0, 255)
-yellowxy = converter.rgb_to_xy(255, 255, 0)
-bluevioletxy = converter.rgb_to_xy(138, 43, 226)
-orangexy = converter.rgb_to_xy(255, 140, 0)
+# Colours - expand at will
+redxy       = (0.675, 0.322)
+greenxy     = (0.4091, 0.518)
+bluexy      = (0.167, 0.04)
+yellowxy    = (0.4325035269415173, 0.5007488105282536)
+bluevioletxy= (0.2451169740627056, 0.09787810393609737)
+orangexy    = (0.6007303214398861, 0.3767456073628519)
+whitexy     = (0.32272672086556803, 0.3290229095590793)
 
-redAlert = [3,
-            {'transitiontime': 10, 'on': True, 'bri': 254, 'xy': redxy},
-            {'transitiontime': 10, 'on': True, 'bri': 254, 'xy': bluexy}]
+# Four different alerts
+# First two numbers are the number of repeat cycles, and the delay between changes
+# Followed by dictionaries of the change of light status.
+# Use any valid HUE setting - e.g. on, bri, xy, ct, sat, hue, transformationtime
+redAlert = [5, 0.5,
+            {lighttypecolour: {'on': True, 'bri': 254, 'xy': redxy},
+             lighttypedimmable: {'on': True, 'bri': 255}},
+            {lighttypecolour: {'on': True, 'bri': 254, 'xy': bluexy},
+             lighttypedimmable: {'on': True, 'bri': 10}}]
 
-soonAlert = [3,
-             {'transitiontime': 15, 'on': True, 'bri': 254, 'xy': greenxy},
-             {'transitiontime': 15, 'on': True, 'bri': 254, 'xy': bluevioletxy}]
+soonAlert = [3, 1,
+            {lighttypecolour: {'on': True, 'bri': 254, 'xy': greenxy},
+             lighttypedimmable: {'on': True, 'bri': 255}},
+            {lighttypecolour: {'on': True, 'bri': 254, 'xy': bluevioletxy},
+             lighttypedimmable: {'on': True, 'bri': 10}}]
 
-phoneAlert = [6,
-              {'transitiontime': 5, 'on': True, 'bri': 254, 'xy': orangexy},
-              {'transitiontime': 5, 'on': True, 'bri': 254, 'xy': yellowxy}]
+phoneAlert = [6, 0.5,
+            {lighttypecolour: {'on': True, 'bri': 254, 'xy': orangexy},
+             lighttypedimmable: {'on': True, 'bri': 255}},
+            {lighttypecolour: {'on': True, 'bri': 254, 'xy': yellowxy},
+             lighttypedimmable: {'on': True, 'bri': 10}},
+            {lighttypecolour: {'on': True, 'bri': 254, 'xy': bluexy},
+             lighttypedimmable: {'on': True, 'bri': 10}}]
 
-# If an alert is ongoing, thjis will be True
+foodAlert = [6, 0.5,
+            {lighttypecolour: {'on': True, 'bri': 254, 'xy': whitexy},
+             lighttypedimmable: {'on': True, 'bri': 255}},
+            {lighttypecolour: {'on': True, 'bri': 254, 'xy': whitexy},
+             lighttypedimmable: {'on': True, 'bri': 10}}]
+
+allwhite = [1, 0.5,
+            {lighttypecolour: {'on': True, 'bri': 254, 'xy': whitexy},
+             lighttypedimmable: {'on': True, 'bri': 255}}]
+# If an alert is ongoing, this will be True
 inalert = False
+#==============================================================================================
 
 # -------------------------------------------------------------------------------------------
 # Functions
 # -------------------------------------------------------------------------------------------
 
 # Get the status of every light in the list of lights
+# Extend this if there are more light types in your network
 def getlightstatus():
-    lightStatus = []
+    print('getlightstatus')
+    lightStatus = {}
     for light in lights:
-        lightStatus.append({'transitiontime': 20,
-                            'on': b.get_light(light, 'on'),
-                            'bri': b.get_light(light, 'bri'),
-                            'xy': b.get_light(light, 'xy')})
+        lighttype = b.get_light(light, 'type')
+        if lighttype == lighttypecolour:
+            lightStatus.update({light: {'on': b.get_light(light, 'on'),
+                                'bri': b.get_light(light, 'bri'),
+                                'xy': b.get_light(light, 'xy')}})
+        elif lighttype == lighttypedimmable:
+            lightStatus.update({light: {'on': b.get_light(light, 'on'),
+                                'bri': b.get_light(light, 'bri')}})
+
     return lightStatus
 
 
 def putlightstatus(lightstatus):
+    print('putlightstatus')
     for light in range(len(lights)):
         b.set_light(lights[light], lightstatus[light])
-    time.sleep(2.1)
-
 
 def huealert(alertpattern):
     global inalert
 
-    inalert = True
-    # Get the current status of the lamps
-    preAlertStatus = getlightstatus()
+    print('huealert')
 
-    # Using the pre-defined alert patterns, change the lamp status
-    for rep in range(alertpattern[0]):
-        for runalert in range(1, len(alertpattern)):
-            b.set_light(lights, alertpattern[runalert])
-            time.sleep(alertpattern[runalert]['transitiontime'] / 10.0)
+    if not inalert:
+        inalert = True
+        # Get the current status of the lamps
+        preAlertStatus = getlightstatus()
+        print(preAlertStatus)
 
-    # Return the lamps to the previous status
-    putlightstatus(preAlertStatus)
-    inalert = False
+        # Using the pre-defined alert patterns, change the lamp status
+        for rep in range(alertpattern[0]):
+            for runalert in range(2, len(alertpattern)):
+                b.set_light(lights, alertpattern[runalert])
+                time.sleep(alertpattern[1])
+
+        # Return the lamps to the previous status
+        putlightstatus(preAlertStatus)
+        inalert = False
 
 def islampon():
     global inalert
+    print('islampon')
 
     result = False
 
     if not inalert:
         islighton = getlightstatus()
-        for light in range(len(lights)):
+        print (islighton)
+        for light in lights:
             if islighton[light]['on']:
                 result = True
 
@@ -111,29 +151,57 @@ def toucha():
     huealert(soonAlert)
     touchphat.led_off("B")
 
+# When the C button is pressed, run soonAlert
+@touchphat.on_touch("C")
+def toucha():
+    huealert(foodAlert)
+    touchphat.led_off("C")
+
 # When the D button is pressed, run phoneAlert
 @touchphat.on_touch("D")
 def toucha():
     huealert(phoneAlert)
     touchphat.led_off("D")
 
-# When the Back button is pressed, toggle the lamp status
+# When enter is pressed, all lights are turned on to bright white
+@touchphat.on_touch("Enter")
+def touchenter():
+    for light in lights:
+        b.set_light(light, 'on', True)
+        b.set_light(light, 'xy', whitexy) # This will cause an handled error on lamps that don't have the xy values
+        b.set_light(light, 'bri', 255)
+    touchphat.led_off("Enter")
+    touchphat.led_on("Back")
+
+# When the Back button is pressed, toggle the lamp on/off status
 @touchphat.on_touch("Back")
 def touchback():
+    global inalert
+
+    print('touchback')
     if not inalert:
-        if islampon():
-            touchphat.led_off("Back")
+        lampon = islampon()
+        inalert = True
+        if lampon:
             for light in lights:
                 b.set_light(light, 'on', False)
+            touchphat.led_off("Back")
         else:
-            touchphat.led_on("Back")
             for light in lights:
                 b.set_light(light, 'on', True)
+            touchphat.led_on("Back")
+        time.sleep(1)
+        inalert = False
 
+#================================================================
+# Main loop - keep going forever
+#================================================================
 while True:
     if inalert:
+        print('inalert')
         time.sleep(1)
     else:
+        print('not inalert')
         if islampon():
             touchphat.led_on("Back")
         else:
