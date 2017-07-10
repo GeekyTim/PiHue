@@ -98,3 +98,5 @@ ENV/
 .idea/vcs.xml
 .idea/webServers.xml
 .idea/workspace.xml
+grouptest.py
+.idea/preferred-vcs.xml
