@@ -146,6 +146,15 @@ This should return something looking like:
     Jul 10 23:26:52 PiHue systemd[1]: Starting Start the TouchpHAT Hue controller...
     Jul 10 23:26:52 PiHue systemd[1]: Started Start the TouchpHAT Hue controller.
 
+## Rebooting your Raspberry Pi on Network Loss
+
+You may find that your Raspberry Pi occasionally disconnects from your network, especially if you are using Wifi.  Once disconnected, unless you do restart the network interface or reboot the Pi, it will remain disconnected.
+
+If this is happening then you may want to use this little service to reboot your Pi, but be careful, if you move the IP address you set becomes unavailable (e.g. if you use your Pi away from home) then it may keep rebooting itself ad infinitum!
+
+Follow the instructions by Thijs Bernolet on his [blog](http://weworkweplay.com/play/rebooting-the-raspberry-pi-when-it-loses-wireless-connection-wifi/) to enable reboot on network loss.
+
+
 ## Suggestions
 This code is only an example of what I want to use the TouchpHAT to do. There is plenty more - like having each button turn on a different light in the house, or connecting a motion or temperature sensor to change light colour - feel free to take this code and modify at will, but PLEASE attribute both the 'phue' [library developer](https://github.com/studioimaginaire/phue) and myself as is customary.
 
