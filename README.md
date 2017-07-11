@@ -26,7 +26,7 @@ Some prerequisites need to be installed for this code:
 
     ````text
     sudo apt-get update
-    sudo apt-get install python3 python3-pip git 
+    sudo apt-get install python3 python3-pip git`` 
 
 * The Pimoroni TouchpHAT library
 
