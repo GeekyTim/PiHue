@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="700mm"
+   height="500mm"
+   viewBox="0 0 700 500"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="Touchphat Plate.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="694.43574"
+     inkscape:cy="834.55038"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     width="700mm"
+     inkscape:measure-start="660.085,975.627"
+     inkscape:measure-end="878.751,975.627"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,203)">
+    <g
+       id="Layer_x0020_1"
+       transform="matrix(0.26458333,0,0,0.26458333,230.22265,6.2113888)">
+      <sodipodi:namedview
+         inkscape:cy="849.31355"
+         inkscape:cx="507.09933"
+         inkscape:zoom="0.94192914"
+         showgrid="false"
+         guidetolerance="10"
+         gridtolerance="10"
+         objecttolerance="10"
+         bordercolor="#666666"
+         pagecolor="#ffffff"
+         borderopacity="1"
+         id="namedview4"
+         inkscape:window-height="855"
+         inkscape:window-width="1391"
+         inkscape:pageshadow="2"
+         inkscape:pageopacity="0"
+         inkscape:current-layer="g12"
+         inkscape:window-maximized="1"
+         inkscape:window-y="1"
+         inkscape:window-x="49" />
+    </g>
+    <path
+       id="path4503"
+       d="m 302.12052,12.934451 c 0,0.402167 -0.21695,0.772584 -0.56356,0.973667 -0.34925,0.201083 -0.77787,0.201083 -1.12448,0 -0.34925,-0.201083 -0.56356,-0.5715 -0.56356,-0.973667 0,-0.402166 0.21431,-0.772583 0.56356,-0.973666 0.34661,-0.201084 0.77523,-0.201084 1.12448,0 0.34661,0.201083 0.56356,0.5715 0.56356,0.973666 z"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke-width:0.26458332" />
+    <rect
+       style="fill:#d0f3d6;fill-opacity:1;stroke:none;stroke-width:0.34530494"
+       id="rect4548"
+       width="65"
+       height="19"
+       x="197.51218"
+       y="49.889999"
+       rx="2.4199023"
+       ry="2.8154175" />
+    <g
+       id="g4569"
+       transform="translate(13.492378,-32.036175)">
+      <circle
+         r="1.5"
+         cy="85.426155"
+         cx="187.51959"
+         id="path4550"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.24770249" />
+      <circle
+         r="1.5"
+         cy="85.426155"
+         cx="245.52"
+         id="path4550-5"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.24770249" />
+    </g>
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.99999994"
+       d="M 746.50195 984.15039 L 746.50195 987.93164 L 746.50195 1007.9004 L 746.50195 1023.8359 C 746.50195 1025.9298 748.18934 1027.6152 750.2832 1027.6152 L 776.88672 1027.6152 L 780.51758 1027.6152 L 784.29883 1027.6152 L 784.29883 1023.8359 L 784.29883 1003.8652 L 784.29883 987.93164 C 784.29883 985.83778 782.61144 984.15039 780.51758 984.15039 L 753.91406 984.15039 L 750.2832 984.15039 L 746.50195 984.15039 z "
+       transform="matrix(0.26458333,0,0,0.26458333,0,-203)"
+       id="rect4591" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       d="m 262.51218,57.389939 v 1.00046 5.2834 4.21626 c 0,0.55402 -0.44646,0.99994 -1.00046,0.99994 h -7.03884 -0.96067 -1.00045 v -0.99994 -5.28391 -4.21575 c 0,-0.554 0.44645,-1.00046 1.00045,-1.00046 h 7.03885 0.96066 z"
+       id="rect4591-5" />
+  </g>
+</svg>
