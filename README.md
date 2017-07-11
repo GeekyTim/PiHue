@@ -24,19 +24,21 @@ The intended use is for the TouchpHAT to be placed in one room and the lights in
 Some prerequisites need to be installed for this code:
 * Python 3, PIP and GIT
 
-    ````text
+    ```text
     sudo apt-get update
+<<<<<<< HEAD
     sudo apt-get install python3 python3-pip git`` 
 
+=======
+    sudo apt-get install python3 python3-pip git
+>>>>>>> b77f4920e8cd67821d004a40c8f252a36da460fe
 * The Pimoroni TouchpHAT library
 
-    ````text
+    ```text
      apt-get install python3-touchphat
-
 * The 'phue' Python Hue library from [StudioImagineaire](http://studioimaginaire.com/en/projects/phue/), and available on [GitHub](https://github.com/studioimaginaire/phue)
     ```text
     sudo pip3 install phue
-
 ## Cloning from GitHub
 The best way to get this code is to clone it from GitHub with:
 
