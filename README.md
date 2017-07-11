@@ -89,7 +89,7 @@ You can now recomment the ``b.connect()`` line.
 ## Running on Boot
 There are a few ways to run Python code on booting your Raspberry Pi. My preferred method is to use Systemd.
 
-###Create A 'Unit File'
+### Create A 'Unit File'
 Create a configuration file (aka a unit file) that tells systemd what we want it to do and when:
 
     sudo nano /lib/systemd/system/PiHue.service
@@ -116,7 +116,8 @@ The permission on the unit file needs to be set to 644 :
 
     sudo chmod 644 /lib/systemd/system/PiHue.service
 
-###Configure systemd
+### Configure systemd
+
 Instruct systemd to start the service during the boot sequence:
 
     sudo systemctl daemon-reload
@@ -126,7 +127,8 @@ Reboot the Pi and the PiHue service should run:
 
     sudo reboot
 
-###Check the Status of the PiHue service
+### Check the Status of the PiHue service
+
 You can check the status of your service using:
 
     sudo systemctl status PiHue.service
@@ -144,7 +146,7 @@ This should return something looking like:
     Jul 10 23:26:52 PiHue systemd[1]: Starting Start the TouchpHAT Hue controller...
     Jul 10 23:26:52 PiHue systemd[1]: Started Start the TouchpHAT Hue controller.
 
-##Suggestions
+## Suggestions
 This code is only an example of what I want to use the TouchpHAT to do. There is plenty more - like having each button turn on a different light in the house, or connecting a motion or temperature sensor to change light colour - feel free to take this code and modify at will, but PLEASE attribute both the 'phue' [library developer](https://github.com/studioimaginaire/phue) and myself as is customary.
 
 Please feel free to tweet me [@Geeky_Tim](https://twitter.com/Geeky_Tim)
