@@ -21,20 +21,31 @@ The intended use is for the TouchpHAT to be placed in one room and the lights in
 * [Pimoroni TouchpHAT](https://shop.pimoroni.com/products/touch-phat)
 
 ## Prerequisites
-* Python 3 and the 
-    * If using Jessie Lite, install Python3 and PIP with:
-        ```python
-        sudo apt-get update
-        sudo apt-get install python3
-        sudo apt-get install python3-pip
+Some prerequisites need to be installed for this code:
+* Python 3, PIP and GIT
+
+    ````text
+    sudo apt-get update
+    sudo apt-get install python3 python3-pip git 
+
 * The Pimoroni TouchpHAT library
-    * Install with:
-        ````python
-         apt-get install python3-touchphat
+
+    ````text
+     apt-get install python3-touchphat
+
 * The 'phue' Python Hue library from [StudioImagineaire](http://studioimaginaire.com/en/projects/phue/), and available on [GitHub](https://github.com/studioimaginaire/phue)
-    * Install with:
-        ```Python
-        sudo pip3 install phue
+    ```text
+    sudo pip3 install phue
+
+## Cloning from GitHub
+The best way to get this code is to clone it from GitHub with:
+
+    git clone https://github.com/GeekyTim/PiHue
+    
+The PiHue code will be in the directory ``PiHue``
+
+    cd PiHue
+
 ## Set Up
 There are two versions of the code:
 * One that controls a group of lights (i.e. a Room): PiHueGroup.py
@@ -83,7 +94,7 @@ There are a few ways to run Python code on booting your Raspberry Pi. My preferr
 ###Create A 'Unit File'
 Create a configuration file (aka a unit file) that tells systemd what we want it to do and when:
 
-    sudo nano /lib/systemd/system/myscript.service
+    sudo nano /lib/systemd/system/PiHue.service
 
 Add in the following text (replacing PiHueGroup.py with PiHueLightList.py as required):
 
@@ -94,7 +105,7 @@ Add in the following text (replacing PiHueGroup.py with PiHueLightList.py as req
     [Service]
     Type=idle
     User=pi
-    ExecStart=/usr/bin/python3 /home/pi/PiHueGroup.py
+    ExecStart=/usr/bin/python3 /home/pi/PiHue/PiHueGroup.py
     
     [Install]
     WantedBy=multi-user.target
@@ -105,7 +116,7 @@ This defines a new service called “PiHue Service”.
 
 The permission on the unit file needs to be set to 644 :
 
-    sudo chmod 644 /lib/systemd/system/myscript.service
+    sudo chmod 644 /lib/systemd/system/PiHue.service
 
 ###Configure systemd
 Instruct systemd to start the service during the boot sequence:
@@ -130,10 +141,12 @@ This should return something looking like:
        Active: active (running) since Mon 2017-07-10 23:26:52 UTC; 15min ago
      Main PID: 746 (python3)
        CGroup: /system.slice/PiHue.service
-               └─746 /usr/bin/python3 /home/pi/PiHueGroup.py
+               └─746 /usr/bin/python3 /home/pi/PiHue/PiHueGroup.py
     
     Jul 10 23:26:52 PiHue systemd[1]: Starting Start the TouchpHAT Hue controller...
     Jul 10 23:26:52 PiHue systemd[1]: Started Start the TouchpHAT Hue controller.
 
 ##Suggestions
 This code is only an example of what I want to use the TouchpHAT to do. There is plenty more - like having each button turn on a different light in the house, or connecting a motion or temperature sensor to change light colour - feel free to take this code and modify at will, but PLEASE attribute both the 'phue' [library developer](https://github.com/studioimaginaire/phue) and myself as is customary.
+
+Please feel free to tweet me [@Geeky_Tim](https://twitter.com/Geeky_Tim)
