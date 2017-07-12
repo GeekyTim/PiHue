@@ -3,8 +3,8 @@ Controlling Philips Hue with a Pimoroni Touch pHAT
 
 ## Introduction
 The purpose of this code is to control Philips Hue lights using a Raspberry Pi and Pimoroni Touch pHAT. Each button on the Touch pHAT can have a different function.  In this case I have decided on the following:
-* The 'Return' button will toggle the lights on and off. The LED indicator will show you whether any lights in the group/list are on.
-* The 'Enter' button will turn all the lights in the group or list to bright.
+* The 'Return' button will toggle the lights on and off. The LED indicator will show you whether any lights in the room/list are on.
+* The 'Enter' button will turn all the lights in the room or list to bright.
 * Button 'A' will flash the lights red
 * Button 'B' will flash the lights amber
 * Button 'C' will flash the lights green
