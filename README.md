@@ -1,8 +1,8 @@
 # PiHue
-Controlling Philips Hue with a Pimoroni TouchPhat
+Controlling Philips Hue with a Pimoroni Touch pHAT
 
 ## Introduction
-The purpose of this code is to control Philips Hue lights using a Raspberry Pi and Pimoroni TouchpHat. Each button on the TouchpHAT can have a different function.  In this case I have decided onthe following:
+The purpose of this code is to control Philips Hue lights using a Raspberry Pi and Pimoroni Touch pHAT. Each button on the Touch pHAT can have a different function.  In this case I have decided onthe following:
 * The 'Return' button will toggle the the lights on and off. The LED indicator will show you whether any lights in the group/list are on.
 * The 'Enter' button will turn all the lights in the group or list to bright.
 * Button 'A' will flash the lights red
@@ -10,7 +10,7 @@ The purpose of this code is to control Philips Hue lights using a Raspberry Pi a
 * Button 'C' will flash the lights green
 * Button 'D' will flash the lights blue
 
-The intended use is for the TouchpHAT to be placed in one room and the lights in another (or in my case, Hut 8) alert me to a situation (e.g. dinner is ready, she is home, phone call etc).  I can also turn off the lights remotely without using the Hue app or Alexa.
+The intended use is for the Touch pHAT to be placed in one room and the lights in another (or in my case, Hut 8) alert me to a situation (e.g. dinner is ready, she is home, phone call etc).  I can also turn off the lights remotely without using the Hue app or Alexa.
 
 ## Hardware Requirements
 * [Raspberry Pi](http://raspberrypi.org/)
@@ -18,7 +18,7 @@ The intended use is for the TouchpHAT to be placed in one room and the lights in
     * Connected to the same network as the Philips Hue
 * [Philips Hue](http://www2.meethue.com)
     * You need to know the IP address of your Hue bridge.
-* [Pimoroni TouchpHAT](https://shop.pimoroni.com/products/touch-phat)
+* [Pimoroni Touch pHAT](https://shop.pimoroni.com/products/touch-phat)
 
 ## Prerequisites
 Some prerequisites need to be installed for this code:
@@ -27,7 +27,7 @@ Some prerequisites need to be installed for this code:
     ```text
     sudo apt-get update
     sudo apt-get install python3 python3-pip git
-* The Pimoroni TouchpHAT library
+* The Pimoroni Touch pHAT library
     ```text
     apt-get install python3-touchphat
 
