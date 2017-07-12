@@ -72,7 +72,7 @@ and 'Dimmable light'). If you have different light types, you can add them to th
 * There is one special dictionary that is used by the 'enter' key to set all lights to on and maximum white: ``allwhite``. You can redefine this to be any colour and brightness that you prefer.
 
 ## Running the Code for the First Time
-The first time you either version, you **MUST** first uncomment the line ``# b.connect()`` and press your Bridge connect button just before running the code with either:
+The first time you run the code, you **MUST** first uncomment the line ``# b.connect()`` and press your Bridge connect button just before running the code with either:
 
     python3 PiHueGroups.py
 
