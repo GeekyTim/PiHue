@@ -1,23 +1,23 @@
 #!/usr/bin/python3
 
 '''
-    File name: PiHueGroup.py
+    File name: PiHueRoom.py
     Author: Tim Richardson
     Date created: 04/07/2017
     Date last modified: 10/07/2017
     Python Version: 3.4
 
 	Description:
-	Control Philips Hue lights using a Pimoroni TouchpHAT - group light version
+	Control Philips Hue lights using a Pimoroni TouchpHAT - Room version
 
     Requirements:
     * Raspberry Pi (http://raspberrypi.org/)
     * Philips Hue (http://www2.meethue.com)
-    * Pimoroni TouchpHAT (https://shop.pimoroni.com/products/touch-phat)
+    * Pimoroni Touch pHAT (https://shop.pimoroni.com/products/touch-phat)
 
     The Raspberry Pi must be on the same network as the Hue bridge
     You must set the bridgeip to be the IP address of your bridge
-    and edit the list of lights in your network in 'lights[]'
+    and edit the room constant 'roomname'
 
     You can edit/expand the colour 'xy' values and the alerts
 '''
@@ -41,7 +41,7 @@ touchphat.all_off()
 # The IP address of the Hue bridge and a list of lights you want to use
 bridgeip = '192.168.13.178'  # <<<<<<<<<<<
 # The 'group' of lights you want to change - i.e. the Room Name in the Hue app
-groupname = 'Hut 8'  # <<<<<<<<<<<
+roomname = 'Hut 8'  # <<<<<<<<<<<
 
 # -----------------------------------------------------------------------------------------------
 # Do some internal setup
@@ -51,22 +51,22 @@ b = Bridge(bridgeip)
 
 # IMPORTANT: If running for the first time:
 #    Uncomment the b.connect() line
-#    Ppress button on bridge
+#    Press button on bridge
 #    Run the code
 # This will save your connection details in /home/pi/.python_hue
 # Delete that file if you change bridges
 # b.connect() # <<<<<<<<<<
 
-# Find the group number from the group name
-allgroups = b.get_group()
-groupnumber = 0
-for group in allgroups.keys():
-    if allgroups[group]['name'] == groupname:
-        groupnumber = int(group)
+# Find the room number from the room name
+allrooms = b.get_group()
+roomnumber = 0
+for room in allrooms.keys():
+    if allrooms[room]['name'] == roomname:
+        roomnumber = int(room)
         break
 
-if groupnumber == 0:
-    print('The group name you have supplied in groupname is not recognised. Please try again. Exiting.')
+if roomnumber == 0:
+    print('The room name you have supplied in roomname is not recognised. Please try again. Exiting.')
     exit()
 
 # Hue 'xy' colours - expand at will
@@ -116,19 +116,20 @@ defaultwaittime = 0.41
 # Functions
 # -------------------------------------------------------------------------------------------
 
-# Get the status of the group
-def getgroupstatus():
-    groupstatus = b.get_group(groupnumber)
-    return groupstatus
+# Get the status of the room
+def getroomstatus():
+    roomstatus = b.get_group(roomnumber)
+    return roomstatus
 
 
-# Return the status of the group to what it was before the alert
-# Input: Dictionary of the status of the group (obtained from getgroupstatus()
-def putgroupstatus(groupstatus):
-    global groupnumber
+# Return the status of the room to what it was before the alert
+# Input: Dictionary of the status of the room (obtained from getroomstatus()
+def putroomstatus(roomstatus):
+    global roomnumber
 
-    b.set_group(groupnumber, {'xy': groupstatus['action']['xy'], 'bri': groupstatus['action']['bri'],
-                              'on': groupstatus['action']['on']}, transitiontime=0)
+    b.set_group(roomnumber, {'xy': roomstatus['action']['xy'],
+                             'bri': roomstatus['action']['bri'],
+                             'on': roomstatus['action']['on']}, transitiontime=0)
     time.sleep(defaultwaittime)
 
 
@@ -137,35 +138,35 @@ def putgroupstatus(groupstatus):
 
 
 def huealert(alertpattern):
-    global inalert, groupnumber
+    global inalert, roomnumber
 
     # Only run if we're not already in an alert
     if not inalert:
         inalert = True
         # Get the current status of the lamps
-        preAlertStatus = getgroupstatus()
+        preAlertStatus = getroomstatus()
 
         # Using the pre-defined alert patterns, change the lamp status
         for rep in range(alertpattern[0]):
             for runalert in range(2, len(alertpattern)):
-                b.set_group(groupnumber, alertpattern[runalert], transitiontime=0)
+                b.set_group(roomnumber, alertpattern[runalert], transitiontime=0)
                 time.sleep(alertpattern[1])
 
         # Return the lamps to the previous status
-        putgroupstatus(preAlertStatus)
+        putroomstatus(preAlertStatus)
         inalert = False
 
 
-# Identifies if any of the lamps in the group are on
+# Identifies if any of the lamps in the room are on
 # Return Value: True if any lamps are on, otherwise False
 def islampon():
-    global inalert, groupnumber
+    global inalert, roomnumber
 
     result = False
 
     if not inalert:
-        groupon = b.get_group(groupnumber)
-        result = groupon['state']['any_on']
+        roomon = b.get_group(roomnumber)
+        result = roomon['state']['any_on']
 
     return result
 
@@ -198,13 +199,13 @@ def touchd():
     touchphat.led_off("D")
 
 
-# When 'enter' is pressed, the group is turned on to 'bright white'
+# When 'enter' is pressed, the room is turned on to 'bright white'
 # (i.e. what is defined in the dictionary 'allwhite'. Change at will.
 @touchphat.on_touch("Enter")
 def touchenter():
-    global groupnumber, allwhite
+    global roomnumber, allwhite
 
-    b.set_group(groupnumber, allwhite, transitiontime=0)
+    b.set_group(roomnumber, allwhite, transitiontime=0)
     time.sleep(defaultwaittime)
     touchphat.led_off("Enter")
     touchphat.led_on("Back")
@@ -213,16 +214,16 @@ def touchenter():
 # When the Back button is pressed, toggle the lamp on/off status
 @touchphat.on_touch("Back")
 def touchback():
-    global inalert, groupnumber
+    global inalert, roomnumber
 
     if not inalert:
         lampon = islampon()
         inalert = True
         if lampon:
-            b.set_group(groupnumber, 'on', False)
+            b.set_group(roomnumber, 'on', False)
             touchphat.led_off("Back")
         else:
-            b.set_group(groupnumber, 'on', True)
+            b.set_group(roomnumber, 'on', True)
             touchphat.led_on("Back")
         time.sleep(1)
         inalert = False
