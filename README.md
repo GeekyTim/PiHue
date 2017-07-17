@@ -103,6 +103,8 @@ Add in the following text (replacing PiHueRoom.py with PiHueLightList.py as requ
     [Service]
     Type=idle
     User=pi
+    Restart=always
+    RestartSec=5
     ExecStart=/usr/bin/python3 /home/pi/PiHue/PiHueRoom.py
     
     [Install]
