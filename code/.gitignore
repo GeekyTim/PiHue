@@ -100,4 +100,3 @@ ENV/
 .idea/workspace.xml
 grouptest.py
 .idea/preferred-vcs.xml
-/.python_hue
