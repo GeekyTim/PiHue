@@ -23,7 +23,8 @@ You can edit/expand the colour 'xy' values and the alerts
 
 Import libraries
 Install phue and touchphat with pip3:
-    pip3 install phue touchphat
+    sudo apt install python3-cap1xxx python3-pip  python3-touchphat
+    sudo pip3 install phue
 """
 
 from signal import pause
