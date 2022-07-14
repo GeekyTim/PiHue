@@ -25,11 +25,11 @@ Some prerequisites need to be installed for this code:
 * Python 3, PIP and GIT
 
     ```text
-    sudo apt-get update
-    sudo apt-get install python3 python3-pip git
+    sudo apt update && sudo apt upgrade
+    sudo apt install python3 python3-pip git
 * The Pimoroni Touch pHAT library
     ```text
-    apt-get install python3-touchphat
+    apt install python3-touchphat
 
 * The 'phue' Python Hue library from [StudioImagineaire](http://studioimaginaire.com/en/projects/phue/), and available on [GitHub](https://github.com/studioimaginaire/phue)
     ```text
@@ -40,7 +40,7 @@ The best way to get this code is to clone it from GitHub with:
 
     git clone https://github.com/GeekyTim/PiHue
     
-The PiHue code will be in the directory ``PiHue``
+The PiHue code will be in the folder ``PiHue``
 
     cd PiHue
 
@@ -84,7 +84,7 @@ Your Pi should connect to the Bridge and save the Bridge details and user in the
 
 If you ever need to change your Bridge details, just delete this file.
 
-You can now recomment the ``b.connect()`` line.
+You can now recomment the ``self.__bridge.connect()`` line.
 
 ## Running on Boot
 There are a few ways to run Python code on booting your Raspberry Pi. My preferred method is to use Systemd.
