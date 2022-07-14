@@ -30,11 +30,9 @@ Some prerequisites need to be installed for this code:
 * The Pimoroni Touch pHAT library
     ```text
     apt install python3-touchphat
-
 * The 'phue' Python Hue library from [StudioImagineaire](http://studioimaginaire.com/en/projects/phue/), and available on [GitHub](https://github.com/studioimaginaire/phue)
     ```text
     sudo pip3 install phue
-
 ## Cloning from GitHub
 The best way to get this code is to clone it from GitHub with:
 
@@ -136,7 +134,6 @@ You can check the status of your service using:
     sudo systemctl status PiHue.service
 
 This should return something looking like:
-
 
     PiHue.service - Start the TouchpHAT Hue controller
        Loaded: loaded (/lib/systemd/system/PiHue.service; enabled)
