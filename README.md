@@ -10,11 +10,11 @@ The purpose of this code is to control Philips Hue lights using a Raspberry Pi a
 * Button 'C' will flash the lights green
 * Button 'D' will flash the lights blue
 
-The intended use is for the Touch pHAT to be placed in one room and the lights in another (or in my case, Hut 8) alert me to a situation (e.g. dinner is ready, she is home, phone call etc).  I can also turn off the lights remotely without using the Hue app or Alexa.
+The intended use is for the Touch pHAT to be placed in one room and the lights in another (or in my case, Hut 8) alert me to a situation (e.g. dinner is ready, she is home, phone call etc.).  I can also turn off the lights remotely without using the Hue app or Alexa.
 
 ## Hardware Requirements
 * [Raspberry Pi](http://raspberrypi.org/)
-    * SD card with Raspbian Jessie installed (preferably Raspbian Lite)
+    * SD card with Raspbian installed (preferably Raspbian Lite)
     * Connected to the same network as the Philips Hue
 * [Philips Hue](http://www2.meethue.com)
     * You need to know the IP address of your Hue bridge.
@@ -25,11 +25,11 @@ Some prerequisites need to be installed for this code:
 * Python 3, PIP and GIT
 
     ```text
-    sudo apt-get update
-    sudo apt-get install python3 python3-pip git
+    sudo apt update && sudo apt upgrade
+    sudo apt install python3 python3-pip git
 * The Pimoroni Touch pHAT library
     ```text
-    apt-get install python3-touchphat
+    apt install python3-touchphat
 
 * The 'phue' Python Hue library from [StudioImagineaire](http://studioimaginaire.com/en/projects/phue/), and available on [GitHub](https://github.com/studioimaginaire/phue)
     ```text
@@ -64,9 +64,9 @@ You can change the 'alert' patterns in the section following ``# Alert Patterns`
 * The first two numbers are the number of repeat cycles, and the delay between light changes. Recommended minimum delay between changes is 0.4s.
 * The remaining values are Python dictionaries of the light status changes.
     * Use any valid Hue status, e.g. 'on', 'bri', 'xy', 'ct', 'sat', 'hue', 'transformationtime'.
-    * Remember that Dimable Lights do not accept any of the colour changes (i.e. 'xy', 'ct', 'sat', 'hue'), so you will need to change their brightness.
+    * Remember that Dim-able Lights do not accept any of the colour changes (i.e. 'xy', 'ct', 'sat', 'hue'), so you will need to change their brightness.
     * You can have as many changes as you need.
-    * For Roomss, if you have dimmable lights as well as colour lights, you should alter the brightness as well as the colour of the rooms' lights.
+    * For Rooms, if you have dimmable lights as well as colour lights, you should alter the brightness as well as the colour of the rooms' lights.
     * For Light Lists the status changes are themselves Python dictionaries that contain the changes for each light type (e.g. 'Extended color light'
 and 'Dimmable light'). If you have different light types, you can add them to the dictionary.
 * There is one special dictionary that is used by the 'enter' key to set all lights to on and maximum white: ``allwhite``. You can redefine this to be any colour and brightness that you prefer.
@@ -84,7 +84,7 @@ Your Pi should connect to the Bridge and save the Bridge details and user in the
 
 If you ever need to change your Bridge details, just delete this file.
 
-You can now recomment the ``b.connect()`` line.
+You can now re-comment the ``b.connect()`` line.
 
 ## Running on Boot
 There are a few ways to run Python code on booting your Raspberry Pi. My preferred method is to use Systemd.
@@ -150,7 +150,7 @@ This should return something looking like:
 
 ## Rebooting your Raspberry Pi on Network Loss
 
-You may find that your Raspberry Pi occasionally disconnects from your network, especially if you are using Wifi.  Once disconnected, unless you do restart the network interface or reboot the Pi, it will remain disconnected.
+You may find that your Raspberry Pi occasionally disconnects from your network, especially if you are using Wi-Fi.  Once disconnected, unless you do restart the network interface or reboot the Pi, it will remain disconnected.
 
 If this is happening then you may want to use this little service to reboot your Pi, but be careful, if you move the IP address you set becomes unavailable (e.g. if you use your Pi away from home) then it may keep rebooting itself ad infinitum!
 

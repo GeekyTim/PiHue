@@ -30,10 +30,9 @@ Install phue and touchphat with pip3:
 from signal import pause
 
 import touchphat
-
-import colourconfig
-import hueconfig
+import configparser
 import huecontrol
+import colourconfig
 
 # ==============================================================================================
 # Setup
@@ -44,7 +43,7 @@ touchphat.all_off()
 # -------------------------------------------------------------------------------------------
 # Functions
 # -------------------------------------------------------------------------------------------
-# When the A button is pressed, run redalert
+# When the A button is pressed, run alert_red
 @touchphat.on_touch("A")
 def toucha():
     huelights.alert(colourconfig.alert_red)
@@ -97,5 +96,10 @@ def main():
 
 
 if __name__ == "__main__":
-    huelights = huecontrol.HueControl(hueconfig.bridge, hueconfig.roomname, hueconfig.waittime)
+    hueconfig = configparser.ConfigParser()
+    hueconfig.read("/home/pi/PiHue/code/hueconfig.cfg")
+    print(hueconfig.sections())
+
+    huelights = huecontrol.HueControl(hueconfig.get('Hue','bridge'), hueconfig.get('Hue','roomname'),
+                                      int(hueconfig.get('Hue','waittime')))
     main()

@@ -21,10 +21,11 @@ class HueControl:
         :param roomname:
         :return:
         """
-        # b.connect()  # <<<<<<<<<<
+
         try:
             # Connect to the bridge
             self.__bridge = Bridge(bridge)
+            # self.__bridge.connect()  # Uncomment to connect to the bridge <<<<<<<<<<
         except:
             print("Unable to connect to the bridge")
             exit()
@@ -32,6 +33,7 @@ class HueControl:
         # Find the room number from the room name
         roomnumber = 0
         allrooms = self.__bridge.get_group()
+
         for room in allrooms.keys():
             if allrooms[room]['name'] == roomname:
                 roomnumber = int(room)
@@ -48,7 +50,7 @@ class HueControl:
 
     def __getroomstatus(self):
         """
-        Get the status of a room BEFORE the alert is set so it can be returned to that state
+        Get the status of a room BEFORE the alert is set, so it can be returned to that state
         """
         self.__roomstatus = self.__bridge.get_group(self.__roomnumber)
 
